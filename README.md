@@ -1,3 +1,18 @@
+This project is just a little extension to  [https://github.com/smallcorgi/Faster-RCNN_TF](https://github.com/smallcorgi/Faster-RCNN_TF)。
+
+* when call
+
+  ```shell
+  cd $FRCN_ROOT
+  python ./tools/demo.py --model model_path
+  ```
+
+  the code will using opencv to call camera do real time detection
+
+* You should use python2.7 to run this code, in python3.5 there is something bad
+
+
+
 # Faster-RCNN_TF
 
 This is an experimental Tensorflow implementation of Faster RCNN - a convnet for object detection with a region proposal network.
@@ -44,55 +59,57 @@ The demo performs detection using a VGG16 network trained for detection on PASCA
 ### Training Model
 1. Download the training, validation, test data and VOCdevkit
 
-	```Shell
-	wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar
-	wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar
-	wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCdevkit_08-Jun-2007.tar
-	```
+  ```Shell
+  wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar
+  wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar
+  wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCdevkit_08-Jun-2007.tar
+  ```
 
 2. Extract all of these tars into one directory named `VOCdevkit`
 
-	```Shell
-	tar xvf VOCtrainval_06-Nov-2007.tar
-	tar xvf VOCtest_06-Nov-2007.tar
-	tar xvf VOCdevkit_08-Jun-2007.tar
-	```
+  ```Shell
+  tar xvf VOCtrainval_06-Nov-2007.tar
+  tar xvf VOCtest_06-Nov-2007.tar
+  tar xvf VOCdevkit_08-Jun-2007.tar
+  ```
 
 3. It should have this basic structure
 
-	```Shell
+  ```Shell
   	$VOCdevkit/                           # development kit
   	$VOCdevkit/VOCcode/                   # VOC utility code
   	$VOCdevkit/VOC2007                    # image sets, annotations, etc.
   	# ... and several other directories ...
-  	```
+  ```
 
 4. Create symlinks for the PASCAL VOC dataset
 
-	```Shell
+  ```Shell
     cd $FRCN_ROOT/data
     ln -s $VOCdevkit VOCdevkit2007
-    ```
-    
+  ```
+
 5. Download pre-trained ImageNet models
 
    Download the pre-trained ImageNet models [[Google Drive]](https://drive.google.com/open?id=0ByuDEGFYmWsbNVF5eExySUtMZmM) [[Dropbox]](https://www.dropbox.com/s/po2kzdhdgl4ix55/VGG_imagenet.npy?dl=0)
-   
-   	```Shell
+
+   	​```Shell
     mv VGG_imagenet.npy $FRCN_ROOT/data/pretrain_model/VGG_imagenet.npy
     ```
 
+    ```
+
 6. Run script to train and test model
-	```Shell
-	cd $FRCN_ROOT
-	./experiments/scripts/faster_rcnn_end2end.sh $DEVICE $DEVICE_ID VGG16 pascal_voc
-	```
+  ```Shell
+  cd $FRCN_ROOT
+  ./experiments/scripts/faster_rcnn_end2end.sh $DEVICE $DEVICE_ID VGG16 pascal_voc
+  ```
   DEVICE is either cpu/gpu
 
 ### The result of testing on PASCAL VOC 2007 
 
-| Classes       | AP     |
-|-------------|--------|
+| Classes     | AP    |
+| ----------- | ----- |
 | aeroplane   | 0.698 |
 | bicycle     | 0.788 |
 | bird        | 0.657 |
@@ -113,7 +130,7 @@ The demo performs detection using a VGG16 network trained for detection on PASCA
 | sofa        | 0.650 |
 | train       | 0.766 |
 | tvmonitor   | 0.666 |
-| mAP        | 0.681 |
+| mAP         | 0.681 |
 
 
 ###References
