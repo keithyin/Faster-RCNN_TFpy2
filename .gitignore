@@ -1,0 +1,5 @@
+#ignore ckpt file
+VGG*
+
+#.idea
+.idea/*
